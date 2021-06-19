@@ -20,8 +20,16 @@ namespace EthScanNet.Test
             EthScanClient client = new(EthNetwork.BscTestNet, "YourApiKeyToken");
             //BscScanClient client = new BscScanClient(EthNetwork.MainNet, "YourApiKeyToken");
 
-            await RunAccountCommandsAsync(client);
-            await RunTokenCommandsAsync(client);
+            try
+            {
+                await RunAccountCommandsAsync(client);
+                await RunTokenCommandsAsync(client);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         private static async Task RunAccountCommandsAsync(EthScanClient client)
