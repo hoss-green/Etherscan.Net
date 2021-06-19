@@ -21,5 +21,5 @@ jobs:
     - name: Publish BscScanNet.Lib
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: BscScan.Net/BscScanNet.Lib.csproj
+          PROJECT_FILE_PATH: EthScan.Net/EthScanNet.Lib.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
