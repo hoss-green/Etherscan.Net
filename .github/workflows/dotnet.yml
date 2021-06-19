@@ -18,8 +18,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Publish BscScanNet.Lib
+    - name: Publish EthScanNet.Lib
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-          PROJECT_FILE_PATH: EthScan.Net/EthScanNet.Lib.csproj
+          PROJECT_FILE_PATH: EthScanNet.Lib/EthScanNet.Lib.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
