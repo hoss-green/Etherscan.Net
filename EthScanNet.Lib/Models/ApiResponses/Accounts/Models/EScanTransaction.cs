@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace EthScanNet.Lib.Models.ApiResponses.Accounts.Models
 {
-    public class BscTransaction
+    public class EScanTransaction
     {
         [JsonProperty("blockNumber")]
         public BigInteger BlockNumber { get; set; }

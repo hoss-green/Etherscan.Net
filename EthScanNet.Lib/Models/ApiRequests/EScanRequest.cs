@@ -4,11 +4,12 @@ using System.Threading.Tasks;
 using EthScanNet.Lib.Enums;
 using EthScanNet.Lib.Extensions;
 using EthScanNet.Lib.Models.ApiResponses;
+using EthScanNet.Lib.Models.EScan;
 using Newtonsoft.Json;
 
 namespace EthScanNet.Lib.Models.ApiRequests
 {
-    internal class EthApiRequest
+    internal class EScanRequest
     {
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         // ReSharper disable once MemberCanBePrivate.Global
@@ -20,9 +21,9 @@ namespace EthScanNet.Lib.Models.ApiRequests
         private Type _responseType;
 
         //public Type returnType { get; set; }
-        internal EthApiRequest(Type responseType, EthModules module, EthActions action)
+        internal EScanRequest(Type responseType, EthModules module, EthActions action)
         {
-            if (responseType.BaseType != typeof(EthApiResponse))
+            if (responseType.BaseType != typeof(EScanResponse))
             {
                 const string type = "response type should inherit from 'BscResponse'";
                 throw new(type);
@@ -55,6 +56,12 @@ namespace EthScanNet.Lib.Models.ApiRequests
                 }
 
                 string resultContent = await result.Content.ReadAsStringAsync();
+                EScanGenericResponse genericResponse = JsonConvert.DeserializeObject<EScanGenericResponse>(resultContent);
+                if (!genericResponse.Message.Equals("ok", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new("Error with API result: " + genericResponse.ResultMessage);
+                }
+                
                 dynamic responseObject = JsonConvert.DeserializeObject(resultContent, this._responseType);
                 return responseObject;
 

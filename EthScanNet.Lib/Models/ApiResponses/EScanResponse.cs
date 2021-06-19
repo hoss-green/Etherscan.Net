@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace EthScanNet.Lib.Models.ApiResponses
 {
-    public class EthApiResponse
+    public class EScanResponse
     {
         [JsonProperty("status")]
         public string Status { get; set; }

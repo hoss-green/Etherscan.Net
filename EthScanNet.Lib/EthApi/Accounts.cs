@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using EthScanNet.Lib.Models.ApiRequests.Accounts;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
-using EthScanNet.Lib.Models.EthModels;
+using EthScanNet.Lib.Models.EScan;
 
 namespace EthScanNet.Lib.EthApi
 {
@@ -12,15 +12,15 @@ namespace EthScanNet.Lib.EthApi
         /// </summary>
         /// <param name="address"></param>
         /// <returns>A Balance object</returns>
-        public async Task<EthApiBalance> GetBalanceAsync(EthAddress address)
+        public async Task<EScanBalance> GetBalanceAsync(EScanAddress address)
         {
-            EthGetBnbAccountBalance apiGetBnbAccountBalance = new(address);
-            return await apiGetBnbAccountBalance.SendAsync();
+            EScanGetAccountBalance apiGetAccountBalance = new(address);
+            return await apiGetAccountBalance.SendAsync();
         }
 
-        public async Task<EthApiTransactions> GetNormalTransactionsAsync(EthAddress address, ulong? startBlock = null, ulong? endBlock = null)
+        public async Task<EScanTransactions> GetNormalTransactionsAsync(EScanAddress address, ulong? startBlock = null, ulong? endBlock = null)
         {
-            EthGetNormalTransactions getNormalTransactions = new(address);
+            EScanGetNormalTransactions getNormalTransactions = new(address);
             return await getNormalTransactions.SendAsync();
         }
         
@@ -31,15 +31,15 @@ namespace EthScanNet.Lib.EthApi
         /// <param name="startBlock"></param>
         /// <param name="endBlock"></param>
         /// <returns></returns>
-        public async Task<EthApiTransactions> GetInternalTransactionsAsync(EthAddress address, ulong? startBlock = null, ulong? endBlock = null)
+        public async Task<EScanTransactions> GetInternalTransactionsAsync(EScanAddress address, ulong? startBlock = null, ulong? endBlock = null)
         {
-            EthGetInternalTransactions getInternalTransactions = new(address);
+            EScanGetInternalTransactions getInternalTransactions = new(address);
             return await getInternalTransactions.SendAsync();
         }
 
-        public async Task<EthApiMinedBlocks> GetMinedBlocksAsync(EthAddress address)
+        public async Task<EScanMinedBlocks> GetMinedBlocksAsync(EScanAddress address)
         {
-            EthGetMinedBlocks getMinedBlocks = new(address);
+            EScanGetMinedBlocks getMinedBlocks = new(address);
             return await getMinedBlocks.SendAsync();
         }
         
@@ -48,15 +48,15 @@ namespace EthScanNet.Lib.EthApi
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public async Task<EthApiTokenTransferEvents> GetTokenEvents(EthAddress address)
+        public async Task<EScanTokenTransferEvents> GetTokenEvents(EScanAddress address)
         {
-            EthGetTokenTransferEvents getTokenTransferEvents = new(address);
+            EScanGetTokenTransferEvents getTokenTransferEvents = new(address);
             return await getTokenTransferEvents.SendAsync();
         }
         
-        public async Task<EthApiTokenTransferEvents> GetTokenEvents(EthAddress address, EthAddress tokenAddress)
+        public async Task<EScanTokenTransferEvents> GetTokenEvents(EScanAddress address, EScanAddress tokenAddress)
         {
-            EthGetTokenTransferEvents getTokenTransferEvents = new(address);
+            EScanGetTokenTransferEvents getTokenTransferEvents = new(address);
             return await getTokenTransferEvents.SendAsync();
         }
     }

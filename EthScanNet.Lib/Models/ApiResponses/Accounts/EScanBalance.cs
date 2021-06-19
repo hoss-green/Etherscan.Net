@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 
 namespace EthScanNet.Lib.Models.ApiResponses.Accounts
 {
-    public class EthApiBalance : EthApiResponse
+    public class EScanBalance : EScanResponse
     {
         [JsonProperty("result")]
-        public BigInteger BnbBalance { get; set; }
+        public BigInteger Balance { get; set; }
     }
 }

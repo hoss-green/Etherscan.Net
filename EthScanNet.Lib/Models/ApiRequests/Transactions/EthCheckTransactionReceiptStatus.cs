@@ -3,7 +3,7 @@ using EthScanNet.Lib.Enums;
 
 namespace EthScanNet.Lib.Models.ApiRequests.Transactions
 {
-    internal class EthCheckTransactionReceiptStatus : EthApiRequest
+    internal class EthCheckTransactionReceiptStatus : EScanRequest
     {
         internal EthCheckTransactionReceiptStatus(string txHash, Type responseType, EthModules module, EthActions action) : base(responseType, module, action)
         {

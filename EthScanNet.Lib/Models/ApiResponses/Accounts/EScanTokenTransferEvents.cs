@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace EthScanNet.Lib.Models.ApiResponses.Accounts
 {
-    public class EthApiTransactions : EthApiResponse
+    public class EScanTokenTransferEvents : EScanResponse
     {
         [JsonProperty("result")]
-        public List<BscTransaction> Transactions { get; set; }
+        public List<EthTokenTransferEvent> TokenTransferEvents { get; set; }
     }
 }

@@ -2,13 +2,13 @@ using System;
 using System.Globalization;
 using System.Numerics;
 
-namespace EthScanNet.Lib.Models.EthModels
+namespace EthScanNet.Lib.Models.EScan
 {
-    public class EthAddress
+    public class EScanAddress
     {
         private string _address;
         
-        public EthAddress(string address)
+        public EScanAddress(string address)
         {
             if (!address.StartsWith("0x"))
             {

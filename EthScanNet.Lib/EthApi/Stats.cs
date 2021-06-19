@@ -1,21 +1,45 @@
 using System.Threading.Tasks;
 using EthScanNet.Lib.Models.ApiRequests.Stats;
-using EthScanNet.Lib.Models.ApiResponses.Tokens;
+using EthScanNet.Lib.Models.ApiResponses.Stats;
 
 namespace EthScanNet.Lib.EthApi
 {
+    //TODO: Need to redo this using interfaces for clarity and ease
     public sealed class Stats
     {
-     
-        /// <summary>
-        /// Get Total Supply of BNB on the Binance Smart Chain
-        /// </summary>
-        /// <returns></returns>
-        public async Task<EthApiTokenSupply> GetTotalSupply()
+        public BnbSpecific BscScan { get; }
+        public EthSpecific EtherScan { get; }
+        
+        public Stats()
         {
-            EthGetTotalBnbSupply getTotalBnbSupply = new();
-            //BscGetMaxTokenSupply getMaxTokenSupply = new();
-            return await getTotalBnbSupply.SendAsync();
+            this.BscScan = new();
+            this.EtherScan = new();
+        }
+
+        public sealed class BnbSpecific
+        {
+            /// <summary>
+            /// Get Total Supply of BNB on the Binance Smart Chain
+            /// </summary>
+            /// <returns></returns>
+            public async Task<EScanTotalCoinSupply> GetTotalSupply()
+            {
+                EScanGetTotalBscCoinSupply getTotalBscCoinSupply = new();
+                return await getTotalBscCoinSupply.SendAsync();
+            }    
+        }
+
+        public sealed class EthSpecific
+        {
+            /// <summary>
+            /// Get Total Supply of BNB on the Binance Smart Chain
+            /// </summary>
+            /// <returns></returns>
+            public async Task<EScanTotalCoinSupply> GetTotalSupply()
+            {
+                EScanGetTotalEthCoinSupply getTotalBscCoinSupply = new();
+                return await getTotalBscCoinSupply.SendAsync();
+            }    
         }
     }
 }

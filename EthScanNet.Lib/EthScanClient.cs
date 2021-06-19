@@ -1,5 +1,3 @@
-using System;
-using EthScanNet.Lib.Enums;
 using EthScanNet.Lib.EthApi;
 
 namespace EthScanNet.Lib
@@ -13,7 +11,6 @@ namespace EthScanNet.Lib
         
         public Accounts Accounts { get; }
         public Tokens Tokens { get;  }
-        
         public Stats Stats { get; }
 
         /// <summary>

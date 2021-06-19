@@ -1,8 +1,8 @@
 using System;
 
-namespace EthScanNet.Lib.Models.EthModels
+namespace EthScanNet.Lib.Models.EScan
 {
-    public class EthDateTime
+    public class EScanDateTime
     {
         private string _timeStamp;
         private DateTime _dateTime;
@@ -19,7 +19,7 @@ namespace EthScanNet.Lib.Models.EthModels
         //     this.DateTime = new(timeStampParsed);
         // }
 
-        public EthDateTime(long timeStamp)
+        public EScanDateTime(long timeStamp)
         {
             this._timeStamp = timeStamp.ToString();
             this._dateTime = new(timeStamp);
