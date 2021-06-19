@@ -13,7 +13,6 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/EthScanNet.Lib/EthNetworkChoice.cs" />
-      <option value="$PROJECT_DIR$/EthScanNet.Test/Program.cs" />
       <option value="$PROJECT_DIR$/EthScanNet.Lib/EthScanClient.cs" />
       <option value="$PROJECT_DIR$/EthScanNet.Test/TestExts.cs" />
       <option value="$PROJECT_DIR$/EthScanNet.Lib/Enums/BscModules.cs" />
@@ -39,6 +38,8 @@
       <option value="$PROJECT_DIR$/EthScanNet.Lib/Models/EthModels/EthDateTime.cs" />
       <option value="$PROJECT_DIR$/EthScanNet.Lib/EthApi/Accounts.cs" />
       <option value="$PROJECT_DIR$/EthScanNet.Lib/EthNetwork.cs" />
+      <option value="$PROJECT_DIR$/EthScanNet.Test/Program.cs" />
+      <option value="$PROJECT_DIR$/.gitignore" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1u8KUf2nrS1t1mlhnote5qWOz8r" />
