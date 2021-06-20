@@ -4,10 +4,10 @@ using EthScanNet.Lib.Models.EScan;
 
 namespace EthScanNet.Lib.Models.ApiRequests.Tokens
 {
-    internal class EScanGetCirculatingTokenSupply : EthTokenRequest
+    internal class EScanGetCirculatingTokenSupply : EScanTokenRequest
     {
         internal EScanGetCirculatingTokenSupply(EScanAddress contractAddress) 
-            : base(contractAddress, EthModules.Stats, EthActions.TokenCSupply, typeof(EScanTokenSupply))
+            : base(contractAddress, EScanModules.Stats, EScanActions.TokenCSupply, typeof(EScanTokenSupply))
         {
         }
     }

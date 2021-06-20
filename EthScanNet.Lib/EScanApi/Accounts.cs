@@ -3,7 +3,7 @@ using EthScanNet.Lib.Models.ApiRequests.Accounts;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
 using EthScanNet.Lib.Models.EScan;
 
-namespace EthScanNet.Lib.EthApi
+namespace EthScanNet.Lib.EScanApi
 {
     public sealed class Accounts
     {

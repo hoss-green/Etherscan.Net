@@ -3,7 +3,7 @@ using EthScanNet.Lib.Models.ApiRequests.Tokens;
 using EthScanNet.Lib.Models.ApiResponses.Tokens;
 using EthScanNet.Lib.Models.EScan;
 
-namespace EthScanNet.Lib.EthApi
+namespace EthScanNet.Lib.EScanApi
 {
     public sealed class Tokens
     {

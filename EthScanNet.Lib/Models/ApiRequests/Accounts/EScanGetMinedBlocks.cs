@@ -8,7 +8,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
     {
 
         public EScanGetMinedBlocks(EScanAddress address) 
-            : base(address,EthModules.Account, EthActions.GetMinedBlocks, typeof(EScanMinedBlocks))
+            : base(address,EScanModules.Account, EScanActions.GetMinedBlocks, typeof(EScanMinedBlocks))
         {
         }
     }

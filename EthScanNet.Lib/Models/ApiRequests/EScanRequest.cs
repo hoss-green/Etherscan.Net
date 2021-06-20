@@ -21,7 +21,7 @@ namespace EthScanNet.Lib.Models.ApiRequests
         private Type _responseType;
 
         //public Type returnType { get; set; }
-        internal EScanRequest(Type responseType, EthModules module, EthActions action)
+        internal EScanRequest(Type responseType, EScanModules module, EScanActions action)
         {
             if (responseType.BaseType != typeof(EScanResponse))
             {
@@ -37,13 +37,13 @@ namespace EthScanNet.Lib.Models.ApiRequests
         internal async Task<dynamic> SendAsync()
         {
             HttpClient client = new HttpClient();
-            string requestUrl = EthScanClient.BaseUrl;
+            string requestUrl = EScanClient.BaseUrl;
             string queryString = this.ToQueryString();
-            string finalUrl = requestUrl + queryString + "&apiKey=" + EthScanClient.ApiKeyToken;
+            string finalUrl = requestUrl + queryString + "&apiKey=" + EScanClient.ApiKeyToken;
 
-            if (EthScanClient.ThrottleMs.HasValue)
+            if (EScanClient.ThrottleMs.HasValue)
             {
-                await Task.Delay(EthScanClient.ThrottleMs.Value);
+                await Task.Delay(EScanClient.ThrottleMs.Value);
             }
             
             HttpRequestMessage requestMessage = new(HttpMethod.Get, finalUrl);

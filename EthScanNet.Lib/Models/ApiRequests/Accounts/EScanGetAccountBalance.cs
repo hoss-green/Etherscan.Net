@@ -7,7 +7,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
     internal class EScanGetAccountBalance : EScanAccountRequest
     {
         public EScanGetAccountBalance(EScanAddress address) 
-            : base(address, EthModules.Account, EthActions.Balance, typeof(EScanBalance))
+            : base(address, EScanModules.Account, EScanActions.Balance, typeof(EScanBalance))
         {
         }
     }

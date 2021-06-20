@@ -1,8 +1,8 @@
-using EthScanNet.Lib.EthApi;
+using EthScanNet.Lib.EScanApi;
 
 namespace EthScanNet.Lib
 {
-    public class EthScanClient
+    public class EScanClient
     {
         public static string ApiKeyToken { get; private set; }
         public static string BaseUrl { get; private set; }
@@ -19,7 +19,7 @@ namespace EthScanNet.Lib
         /// <param name="network">The ETH based EtherScan network to which to connect</param>
         /// <param name="apiKeyToken">The API key needed to be able to access more results</param>
         /// <param name="throttleMs">Delay between transaction requests, set to 200ms, as registered users are allowed 5/seconds</param>
-        public EthScanClient(EthNetwork network, string apiKeyToken, int? throttleMs = 200)
+        public EScanClient(EScanNetwork network, string apiKeyToken, int? throttleMs = 200)
         {
             ThrottleMs = throttleMs;
             BaseUrl = network;

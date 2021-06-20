@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using EthScanNet.Lib.Models.ApiRequests.Stats;
 using EthScanNet.Lib.Models.ApiResponses.Stats;
 
-namespace EthScanNet.Lib.EthApi
+namespace EthScanNet.Lib.EScanApi
 {
     //TODO: Need to redo this using interfaces for clarity and ease
     public sealed class Stats

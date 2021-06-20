@@ -1,6 +1,6 @@
 namespace EthScanNet.Lib.Enums
 {
-    internal enum EthModules
+    internal enum EScanModules
     {
         Account,
         Contract,

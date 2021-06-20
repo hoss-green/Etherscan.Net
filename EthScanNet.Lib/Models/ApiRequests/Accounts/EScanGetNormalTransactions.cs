@@ -8,7 +8,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
     {
 
         public EScanGetNormalTransactions(EScanAddress address) 
-            : base(address,EthModules.Account, EthActions.TxList, typeof(EScanTransactions))
+            : base(address,EScanModules.Account, EScanActions.TxList, typeof(EScanTransactions))
         {
         }
     }

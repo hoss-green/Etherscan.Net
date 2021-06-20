@@ -18,7 +18,7 @@ namespace EthScanNet.Test
 
         private static async Task RunApiCommands()
         {
-            EthScanClient client = new(EthNetwork.BscTestNet, "YourApiKeyToken");
+            EScanClient client = new(EScanNetwork.BscTestNet, "YourApiKeyToken");
             //BscScanClient client = new BscScanClient(EthNetwork.MainNet, "YourApiKeyToken");
 
             try
@@ -34,7 +34,7 @@ namespace EthScanNet.Test
             }
         }
 
-        private static async Task RunAccountCommandsAsync(EthScanClient client)
+        private static async Task RunAccountCommandsAsync(EScanClient client)
         {
             Console.WriteLine("Account test started");
             EScanBalance apiBalance = await client.Accounts.GetBalanceAsync(new("0x0000000000000000000000000000000000001004"));
@@ -45,7 +45,7 @@ namespace EthScanNet.Test
             Console.WriteLine("Account test complete");
         }
         
-        private static async Task RunTokenCommandsAsync(EthScanClient client)
+        private static async Task RunTokenCommandsAsync(EScanClient client)
         {
             EScanAddress contractAddress = new("0xf09f5e21f86692c614d2d7b47e3b9729dc1c436f");
             Console.WriteLine("Token test started");
@@ -54,7 +54,7 @@ namespace EthScanNet.Test
             Console.WriteLine("Token test complete");
         }
     
-        private static async Task RunStatsCommandsAsync(EthScanClient client)
+        private static async Task RunStatsCommandsAsync(EScanClient client)
         {
             EScanAddress contractAddress = new("0xf09f5e21f86692c614d2d7b47e3b9729dc1c436f");
             Console.WriteLine("Stats test started");

@@ -8,7 +8,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
     {
 
         public EScanGetTokenTransferEvents(EScanAddress address) 
-            : base(address,EthModules.Account, EthActions.TokenNftTx, typeof(EScanTokenTransferEvents))
+            : base(address,EScanModules.Account, EScanActions.TokenNftTx, typeof(EScanTokenTransferEvents))
         {
         }
     }
