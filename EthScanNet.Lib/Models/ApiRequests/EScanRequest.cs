@@ -6,6 +6,7 @@ using EthScanNet.Lib.Extensions;
 using EthScanNet.Lib.Models.ApiResponses;
 using EthScanNet.Lib.Models.EScan;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EthScanNet.Lib.Models.ApiRequests
 {
@@ -14,7 +15,7 @@ namespace EthScanNet.Lib.Models.ApiRequests
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         // ReSharper disable once MemberCanBePrivate.Global
         public string Module { get; }
-        
+
         // ReSharper disable once MemberCanBePrivate.Global
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string Action { get; }
@@ -45,7 +46,7 @@ namespace EthScanNet.Lib.Models.ApiRequests
             {
                 await Task.Delay(EScanClient.ThrottleMs.Value);
             }
-            
+
             HttpRequestMessage requestMessage = new(HttpMethod.Get, finalUrl);
             try
             {
@@ -57,14 +58,18 @@ namespace EthScanNet.Lib.Models.ApiRequests
 
                 string resultContent = await result.Content.ReadAsStringAsync();
                 EScanGenericResponse genericResponse = JsonConvert.DeserializeObject<EScanGenericResponse>(resultContent);
-                if (!genericResponse.Message.Equals("ok", StringComparison.OrdinalIgnoreCase))
+                if (genericResponse.Message.StartsWith("NotOk", StringComparison.OrdinalIgnoreCase))
                 {
-                    throw new("Error with API result: " + genericResponse.ResultMessage);
+                    if (genericResponse.ResultMessage.GetType() != typeof(JArray))
+                    {
+                        throw new("Error with API result: (" + genericResponse.ResultMessage + ")");
+                    }
+
+                    throw new("Error with API result: (Unknown)");
                 }
-                
+
                 dynamic responseObject = JsonConvert.DeserializeObject(resultContent, this._responseType);
                 return responseObject;
-
             }
             catch (Exception e)
             {

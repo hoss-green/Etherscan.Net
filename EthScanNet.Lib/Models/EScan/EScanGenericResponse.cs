@@ -11,6 +11,6 @@ namespace EthScanNet.Lib.Models.EScan
         public string Message { get; set; }
         
         [JsonProperty("Result")]
-        public string ResultMessage { get; set; }
+        public object ResultMessage { get; set; }
     }
 }
