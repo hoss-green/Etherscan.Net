@@ -6,8 +6,8 @@ namespace EthScanNet.Lib.Models.ApiRequests.Tokens
 {
     internal class EScanGetCirculatingTokenSupply : EScanTokenRequest
     {
-        internal EScanGetCirculatingTokenSupply(EScanAddress contractAddress) 
-            : base(contractAddress, EScanModules.Stats, EScanActions.TokenCSupply, typeof(EScanTokenSupply))
+        internal EScanGetCirculatingTokenSupply(EScanAddress contractAddress, EScanClient eScanClient) 
+            : base(contractAddress,  eScanClient, EScanModules.Stats, EScanActions.TokenCirculatingSupply, typeof(EScanTokenSupply))
         {
         }
     }

@@ -10,10 +10,15 @@ namespace EthScanNet.Lib.Extensions
         {
             Type itemType = item.GetType();
             PropertyInfo[] properties = itemType.GetProperties();
-            StringBuilder stringBuilder = new StringBuilder("?");
+            StringBuilder stringBuilder = new("?");
 
             foreach (PropertyInfo propertyInfo in properties)
             {
+                if (propertyInfo.GetValue(item) == null)
+                {
+                    continue;
+                }
+                
                 stringBuilder.Append(propertyInfo.Name.ToLower());
                 stringBuilder.Append('=');
                 stringBuilder.Append(propertyInfo.GetValue(item));

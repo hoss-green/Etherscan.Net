@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using EthScanNet.Lib.Enums;
@@ -22,7 +23,7 @@ namespace EthScanNet.Lib.Models.ApiRequests
         private Type _responseType;
 
         //public Type returnType { get; set; }
-        internal EScanRequest(Type responseType, EScanModules module, EScanActions action)
+        internal EScanRequest(EScanClient eScanClient, Type responseType, EScanModules module, EScanActions action)
         {
             if (responseType.BaseType != typeof(EScanResponse))
             {
@@ -41,7 +42,8 @@ namespace EthScanNet.Lib.Models.ApiRequests
             string requestUrl = EScanClient.BaseUrl;
             string queryString = this.ToQueryString();
             string finalUrl = requestUrl + queryString + "&apiKey=" + EScanClient.ApiKeyToken;
-
+            Debug.WriteLine(finalUrl);
+            
             if (EScanClient.ThrottleMs.HasValue)
             {
                 await Task.Delay(EScanClient.ThrottleMs.Value);

@@ -10,7 +10,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Tokens
         // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public EScanAddress ContractAddress { get; }
         
-        internal EScanTokenRequest(EScanAddress contractAddress, EScanModules module, EScanActions action, Type returnType) : base(returnType, module, action)
+        internal EScanTokenRequest(EScanAddress contractAddress, EScanClient eScanClient, EScanModules module, EScanActions action, Type returnType) : base(eScanClient, returnType, module, action)
         {
             this.ContractAddress = contractAddress;
         }

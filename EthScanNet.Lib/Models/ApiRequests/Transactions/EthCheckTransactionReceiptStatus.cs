@@ -5,7 +5,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Transactions
 {
     internal class EthCheckTransactionReceiptStatus : EScanRequest
     {
-        internal EthCheckTransactionReceiptStatus(string txHash, Type responseType, EScanModules module, EScanActions action) : base(responseType, module, action)
+        internal EthCheckTransactionReceiptStatus(string txHash, EScanClient eScanClient, Type responseType, EScanModules module, EScanActions action) : base(eScanClient, responseType, module, action)
         {
             
         }

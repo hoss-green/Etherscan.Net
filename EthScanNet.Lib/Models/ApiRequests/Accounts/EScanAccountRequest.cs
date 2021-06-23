@@ -11,7 +11,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
         // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
         public EScanAddress Address { get; set; }
         
-        internal EScanAccountRequest(EScanAddress address, EScanModules module, EScanActions action, Type returnType) : base(returnType, module, action)
+        internal EScanAccountRequest(EScanAddress address, EScanClient eScanClient,  EScanModules module, EScanActions action, Type returnType) : base(eScanClient, returnType, module, action)
         {
             this.Address = address;
         }

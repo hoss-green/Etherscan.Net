@@ -9,7 +9,12 @@ namespace EthScanNet.Lib.Enums
         public static readonly EScanActions TokenNftTx = new("TokenNftTx");
         public static readonly EScanActions GetMinedBlocks = new( "GetMinedBlocks");
         public static readonly EScanActions TokenSupply = new("TokenSupply");
-        public static readonly EScanActions TokenCSupply = new( "TokenCSupply");
+        public static readonly EScanActions TokenCirculatingSupply = new( "TokenCSupply");
+        public static readonly EScanActions TokenBalance = new( "TokenBalance");
+        
+        public static readonly EScanActions GasEstimate = new("GasEstimate");
+        public static readonly EScanActions GasTracker = new("GasTracker");
+        
         //public static readonly EthActions BnbSupply = new( "BnbSupply");
 
         public static class BncScanSpecific
@@ -26,7 +31,7 @@ namespace EthScanNet.Lib.Enums
         
         private EScanActions(string networkString)
         {
-            this._actionName = networkString;
+            this._actionName = networkString.ToLower();
         }
 
         public override string ToString()

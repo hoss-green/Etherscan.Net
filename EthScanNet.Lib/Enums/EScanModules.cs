@@ -4,6 +4,7 @@ namespace EthScanNet.Lib.Enums
     {
         Account,
         Contract,
-        Stats
+        Stats,
+        GasTracker
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace EthScanNet.Test
 {
     public static class TestExts

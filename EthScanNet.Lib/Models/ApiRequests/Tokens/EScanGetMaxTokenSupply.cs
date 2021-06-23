@@ -6,8 +6,8 @@ namespace EthScanNet.Lib.Models.ApiRequests.Tokens
 {
     internal class EScanGetMaxTokenSupply : EScanTokenRequest
     {
-        internal EScanGetMaxTokenSupply(EScanAddress contractAddress) 
-            : base(contractAddress, EScanModules.Stats, EScanActions.TokenSupply, typeof(EScanTokenSupply))
+        internal EScanGetMaxTokenSupply(EScanAddress contractAddress, EScanClient eScanClient) 
+            : base(contractAddress, eScanClient, EScanModules.Stats, EScanActions.TokenSupply, typeof(EScanTokenSupply))
         {
         }
     }

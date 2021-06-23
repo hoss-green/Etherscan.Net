@@ -5,8 +5,8 @@ namespace EthScanNet.Lib.Models.ApiRequests.Stats
 {
     internal class EScanGetTotalEthCoinSupply : EScanRequest
     {
-        public EScanGetTotalEthCoinSupply() 
-            : base(typeof(EScanTotalCoinSupply),EScanModules.Stats, EScanActions.EtherscanSpecific.EthSupply)
+        public EScanGetTotalEthCoinSupply(EScanClient eScanClient) 
+            : base(eScanClient, typeof(EScanTotalCoinSupply),EScanModules.Stats, EScanActions.EtherscanSpecific.EthSupply)
         {
         }
     }

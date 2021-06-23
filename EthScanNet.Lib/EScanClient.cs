@@ -1,3 +1,4 @@
+using System;
 using EthScanNet.Lib.EScanApi;
 
 namespace EthScanNet.Lib
@@ -5,8 +6,12 @@ namespace EthScanNet.Lib
     public class EScanClient
     {
         public static string ApiKeyToken { get; private set; }
+        
+        [Obsolete("Please use Client.Network.Url. Property will be deprecated in v2.")]
         public static string BaseUrl { get; private set; }
         
+        public EScanNetwork Network { get; }
+
         public static int? ThrottleMs { get; private set; }
         
         public Accounts Accounts { get; }
@@ -23,10 +28,11 @@ namespace EthScanNet.Lib
         {
             ThrottleMs = throttleMs;
             BaseUrl = network;
+            this.Network = network;
             ApiKeyToken = apiKeyToken;
-            this.Accounts = new();
-            this.Tokens = new();
-            this.Stats = new();
+            this.Accounts = new(this);
+            this.Tokens = new(this);
+            this.Stats = new(this);
             
         }
         
