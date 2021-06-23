@@ -44,18 +44,4 @@ namespace EthScanNet.Lib.Enums
             return action._actionName;
         }
     }
-    
-    
-
-    // internal enum EthActions
-    // {
-    //     Balance,
-    //     TxList,
-    //     TxListInternal,
-    //     TokenNftTx,
-    //     GetMinedBlocks,
-    //     TokenSupply,
-    //     TokenCSupply,
-    //     BnbSupply
-    // }
 }
