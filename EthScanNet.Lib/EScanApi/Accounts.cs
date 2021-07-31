@@ -52,7 +52,6 @@ namespace EthScanNet.Lib.EScanApi
         /// <param name="page">the number of the page to return</param>
         /// <param name="offset">the maximum number of results per page to return</param>
         /// <returns>Returns up to a maximum of the last 10000 transactions only</returns>
-        [Obsolete("Please use either GetInternalTransactionsByAddressAsync or GetInternalTransactionsByTxHashAsync")]
         public async Task<EScanTransactions> GetInternalTransactionsAsync(
             EScanAddress address,
             ulong? startBlock = null,
@@ -63,7 +62,17 @@ namespace EthScanNet.Lib.EScanApi
             EScanGetInternalTransactionsByAddress getInternalTransactionsByAddress = new(address, startBlock, endBlock, page, offset, this.Client);
             return await getInternalTransactionsByAddress.SendAsync();
         }
-        
+
+        /// <summary>
+        /// Get a list of 'Internal' Transactions by Transaction Hash
+        /// </summary>
+        /// <param name="txHash"></param>
+        /// <returns>Returns up to a maximum of the last 10000 transactions only</returns>
+        public async Task<EScanTransactions> GetInternalTransactionsAsync(string txHash)
+        {
+            EScanGetInternalTransactionsByHash getInternalTransactionsByAddress = new(txHash, this.Client);
+            return await getInternalTransactionsByAddress.SendAsync();
+        }
         
         /// <summary>
         /// Get a list of 'Internal' Transactions by Address
@@ -90,10 +99,6 @@ namespace EthScanNet.Lib.EScanApi
         /// Get a list of 'Internal' Transactions by Address
         /// </summary>
         /// <param name="txHash"></param>
-        /// <param name="startBlock">Starting blockNo to retrieve results from</param>
-        /// <param name="endBlock">ending blockNo to retrieve results from</param>
-        /// <param name="page">the number of the page to return</param>
-        /// <param name="offset">the maximum number of results per page to return</param>
         /// <returns>Returns up to a maximum of the last 10000 transactions only</returns>
         public async Task<EScanTransactions> GetInternalTransactionsByTxHashAsync(string txHash)
         {
