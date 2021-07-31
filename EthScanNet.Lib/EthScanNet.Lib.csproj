@@ -7,7 +7,7 @@
         <PackageDescription>Library wrapper for the various Etherscan/BscScan APIS</PackageDescription>
         <RepositoryUrl>https://github.com/hossyposs/Etherscan.Net</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageVersion>1.2.2</PackageVersion>
+        <PackageVersion>1.2.3</PackageVersion>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 

@@ -95,12 +95,7 @@ namespace EthScanNet.Lib.EScanApi
         /// <param name="page">the number of the page to return</param>
         /// <param name="offset">the maximum number of results per page to return</param>
         /// <returns>Returns up to a maximum of the last 10000 transactions only</returns>
-        public async Task<EScanTransactions> GetInternalTransactionsByTxHashAsync(
-            string txHash,
-            ulong? startBlock = null,
-            ulong? endBlock = null,
-            int? page = null,
-            int? offset = null)
+        public async Task<EScanTransactions> GetInternalTransactionsByTxHashAsync(string txHash)
         {
             EScanGetInternalTransactionsByHash getInternalTransactionsByAddress = new(txHash, this.Client);
             return await getInternalTransactionsByAddress.SendAsync();
