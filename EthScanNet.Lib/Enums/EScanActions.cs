@@ -14,6 +14,8 @@ namespace EthScanNet.Lib.Enums
         
         public static readonly EScanActions GasEstimate = new("GasEstimate");
         public static readonly EScanActions GasTracker = new("GasTracker");
+
+        public static readonly EScanActions EthBlockNumber = new("Eth_BlockNumber");
         
         //public static readonly EthActions BnbSupply = new( "BnbSupply");
 

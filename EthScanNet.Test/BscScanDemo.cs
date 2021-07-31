@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using EthScanNet.Lib;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
+using EthScanNet.Lib.Models.ApiResponses.Proxy;
 using EthScanNet.Lib.Models.ApiResponses.Stats;
 using EthScanNet.Lib.Models.ApiResponses.Tokens;
 using EthScanNet.Lib.Models.EScan;
@@ -24,9 +25,10 @@ namespace EthScanNet.Test
 
             try
             {
-                await RunAccountCommandsAsync(client);
-                await RunTokenCommandsAsync(client);
-                await RunStatsCommandsAsync(client);
+                await RunTestCommandAsync(client);
+                // await RunAccountCommandsAsync(client);
+                // await RunTokenCommandsAsync(client);
+                // await RunStatsCommandsAsync(client);
                 Console.WriteLine();
             }
             catch (Exception e)
@@ -34,6 +36,16 @@ namespace EthScanNet.Test
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        private async Task RunTestCommandAsync(EScanClient client)
+        {
+            //1603fa0d-e27a-4a15-901d-4df32be5260c
+            EScanEthCurrentBlock currentBlock = await client.Proxy.CurrentBlock();
+            Console.WriteLine("CurrentBlock: " + currentBlock.Result);
+            
+            EScanTransactions internalApiTransaction = await client.Accounts.GetInternalTransactionsAsync("0x0032438e1f8d51cd3c13c23587e048d1a180449e19ab8ea930fe379f8c2678a7");
+            Console.WriteLine("GetInternalTransactionsAsync: " + internalApiTransaction.Message);
         }
 
         private async Task RunAccountCommandsAsync(EScanClient client)

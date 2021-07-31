@@ -17,6 +17,8 @@ namespace EthScanNet.Lib
         public Accounts Accounts { get; }
         public Tokens Tokens { get;  }
         public Stats Stats { get; }
+        
+        public Proxy Proxy { get; }
 
         /// <summary>
         /// The base connection of the API, use this to access the features from within the account
@@ -33,7 +35,8 @@ namespace EthScanNet.Lib
             this.Accounts = new(this);
             this.Tokens = new(this);
             this.Stats = new(this);
-            
+            this.Proxy = new(this);
+
         }
         
         

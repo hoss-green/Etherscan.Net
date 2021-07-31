@@ -5,6 +5,7 @@ namespace EthScanNet.Lib.Enums
         Account,
         Contract,
         Stats,
-        GasTracker
+        GasTracker,
+        Proxy
     }
 }

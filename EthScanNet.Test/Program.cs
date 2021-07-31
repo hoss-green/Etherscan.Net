@@ -14,7 +14,7 @@ namespace EthScanNet.Test
         {
             string apiKey = null;
             
-            BscScanDemo demo = new BscScanDemo(apiKey);
+            BscScanDemo demo = new(apiKey);
             // EtherscanDemo demo = new EtherscanDemo(apiKey);
             
 

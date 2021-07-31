@@ -25,12 +25,12 @@ namespace EthScanNet.Lib.Models.ApiRequests
         //public Type returnType { get; set; }
         internal EScanRequest(EScanClient eScanClient, Type responseType, EScanModules module, EScanActions action)
         {
-            if (responseType.BaseType != typeof(EScanResponse))
+            if (responseType.BaseType != typeof(EScanResponse) && responseType.BaseType != typeof(EScanJsonRpcResponse))
             {
-                const string type = "response type should inherit from 'BscResponse'";
+                const string type = "response type should inherit from 'EScanResponse' or 'EScanJsonRpcResponse'";
                 throw new(type);
             }
-
+            
             this._responseType = responseType;
             this.Module = module.ToString();
             this.Action = action.ToString();
@@ -59,6 +59,17 @@ namespace EthScanNet.Lib.Models.ApiRequests
                 }
 
                 string resultContent = await result.Content.ReadAsStringAsync();
+                
+                if (this._responseType.BaseType == typeof(EScanJsonRpcResponse))
+                {
+                    EScanGenericJsonResponse genericJsonResponse = JsonConvert.DeserializeObject<EScanGenericJsonResponse>(resultContent);
+                    if (genericJsonResponse.JsonRpc != null)
+                    {
+                        dynamic jsonResponseObject = JsonConvert.DeserializeObject(resultContent, this._responseType);
+                        return jsonResponseObject;
+                    }
+                }
+                
                 EScanGenericResponse genericResponse = JsonConvert.DeserializeObject<EScanGenericResponse>(resultContent);
                 if (genericResponse.Message.StartsWith("NotOk", StringComparison.OrdinalIgnoreCase))
                 {
