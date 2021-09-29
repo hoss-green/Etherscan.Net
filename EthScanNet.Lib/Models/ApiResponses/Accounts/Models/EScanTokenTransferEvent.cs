@@ -32,6 +32,9 @@ namespace EthScanNet.Lib.Models.ApiResponses.Accounts.Models
         [JsonProperty("value")]
         public BigInteger Value { get; set; }
 
+        [JsonProperty("tokenID")]
+        public string TokenID { get; set; }
+
         [JsonProperty("tokenName")]
         public string TokenName { get; set; }
 
