@@ -52,6 +52,9 @@ namespace EthScanNet.Test
             EScanTokenTransferEvents apiTokenTransferEvents = await client.Accounts.GetTokenEvents(new("0xf09f5e21f86692c614d2d7b47e3b9729dc1c436f"));
             Console.WriteLine("GetTokenEvents: " + apiTokenTransferEvents.Message);
             Console.WriteLine("Account test complete");
+            EScanERC20TokenTransferEvents apiERC20TokenTransferEvents = await client.Accounts.GetERC20TokenEvents(new("0xf09f5e21f86692c614d2d7b47e3b9729dc1c436f"));
+            Console.WriteLine("GetTokenEvents: " + apiTokenTransferEvents.Message);
+            Console.WriteLine("Account test complete");
         }
 
         private async Task RunTokenCommandsAsync(EScanClient client)

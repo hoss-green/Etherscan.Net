@@ -146,5 +146,16 @@ namespace EthScanNet.Lib.EScanApi
             EScanGetTokenBalanceForAccount getTokenBalanceForAccount = new(address, contractAddress, this.Client);
             return await getTokenBalanceForAccount.SendAsync();
         }
+
+        /// <summary>
+        /// Get a list of "ERC20 - Token Transfer Events" by Address
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public async Task<EScanERC20TokenTransferEvents> GetERC20TokenEvents(EScanAddress address)
+        {
+            EScanGetERC20TokenTransferEvents getTokenTransferEvents = new(address, this.Client);
+            return await getTokenTransferEvents.SendAsync();
+        }
     }
 }
