@@ -12,7 +12,7 @@ namespace EthScanNet.Lib.Models.ApiRequests.Accounts
     internal class EScanGetERC20TokenTransferEvents: EScanAccountRequest
     {
         public EScanGetERC20TokenTransferEvents(EScanAddress address, EScanClient eScanClient)
-           : base(address, eScanClient, EScanModules.Account, EScanActions.TXERC20Token, typeof(EScanERC20TokenTransferEvents))
+           : base(address, eScanClient, EScanModules.Account, EScanActions.TxErc20Token, typeof(EScanERC20TokenTransferEvents))
         {
         }
     }
