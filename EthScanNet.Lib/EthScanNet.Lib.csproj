@@ -2,12 +2,12 @@
 
     <PropertyGroup>
         <PackageId>Etherscan.Net</PackageId>
-        <Version>1.2.2</Version>
+        <Version>1.3.1</Version>
         <Authors>Hossyposs</Authors>
         <PackageDescription>Library wrapper for the various Etherscan/BscScan APIS</PackageDescription>
         <RepositoryUrl>https://github.com/hossyposs/Etherscan.Net</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageVersion>1.3</PackageVersion>
+        <PackageVersion>1.3.1</PackageVersion>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
