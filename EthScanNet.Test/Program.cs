@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EthScanNet.Lib;
+
+using System;
 using System.Threading.Tasks;
 
 namespace EthScanNet.Test
@@ -13,12 +15,12 @@ namespace EthScanNet.Test
         private static async Task RunApiCommands()
         {
             string apiKey = null;
-            
-            BscScanDemo demo = new(apiKey);
-            // EtherscanDemo demo = new EtherscanDemo(apiKey);
-            
 
-            
+            //BscScanDemo demo = new(apiKey);
+            EtherscanDemo demo = new EtherscanDemo(apiKey, EScanNetwork.RopstenNet);
+
+
+
             try
             {
                 await demo.RunApiCommandsAsync();

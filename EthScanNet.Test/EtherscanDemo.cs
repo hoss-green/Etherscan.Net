@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using EthScanNet.Lib;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
+using EthScanNet.Lib.Models.ApiResponses.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Stats;
 using EthScanNet.Lib.Models.ApiResponses.Tokens;
 using EthScanNet.Lib.Models.EScan;
@@ -11,22 +12,25 @@ namespace EthScanNet.Test
     public class EtherscanDemo
     {
         private readonly string _apiKey;
+        private readonly EScanNetwork _network;
 
-        public EtherscanDemo(string apiKey)
+        public EtherscanDemo(string apiKey, EScanNetwork network)
         {
             this._apiKey = apiKey ?? "YourApiKeyToken";
+            this._network = network ?? EScanNetwork.MainNet;
         }
 
         public async Task RunApiCommandsAsync()
         {
             Console.WriteLine("Running EtherscanDemo with APIKey: " + this._apiKey);
-            EScanClient client = new(EScanNetwork.MainNet, this._apiKey);
+            EScanClient client = new(this._network, this._apiKey);
 
             try
             {
                 await RunAccountCommandsAsync(client);
                 await RunTokenCommandsAsync(client);
                 await RunStatsCommandsAsync(client);
+                await RunContractCommandsAsync(client);
                 Console.WriteLine();
             }
             catch (Exception e)
@@ -75,6 +79,20 @@ namespace EthScanNet.Test
             EScanTotalCoinSupply totalSupply = await client.Stats.GetTotalSupply();
             Console.WriteLine("GetTotalSupply: " + totalSupply.Message);
             Console.WriteLine("Stats test complete");
+        }
+
+        private async Task RunContractCommandsAsync(EScanClient client)
+        {
+            Console.WriteLine("Contracts test started");
+
+            EScanAddress contractAddress = new EScanAddress("0xBff53e93ad7F17028fa75F1AB6F5fdB18AD06e8a");
+            EScanABIResponse abiResponse = await client.Contracts.GetABIAsync(contractAddress);
+            Console.WriteLine("ABI: " + abiResponse.Message);
+
+            EScanSourceCodeResponse sourceCodeResponse = await client.Contracts.GetSourceCodeAsync(contractAddress);
+            Console.WriteLine("Source Code: " + sourceCodeResponse.Message);
+
+            Console.WriteLine("Contracts test complete");
         }
     }
 }
