@@ -4,12 +4,12 @@ using EthScanNet.Lib.Models.EScan;
 
 namespace EthScanNet.Lib.Models.ApiRequests.Contracts
 {
-    internal class EScanGetContractABIRequest : EScanRequest
+    internal class EScanGetContractAbiRequest : EScanRequest
     {
         public EScanAddress Address { get; set; }
 
-        internal EScanGetContractABIRequest(EScanAddress address, EScanClient eScanClient) 
-            : base(eScanClient, typeof(EScanABIResponse), EScanModules.Contract, EScanActions.GetContractABI)
+        internal EScanGetContractAbiRequest(EScanAddress address, EScanClient eScanClient) 
+            : base(eScanClient, typeof(EScanAbiResponse), EScanModules.Contract, EScanActions.GetContractAbi)
         {
             this.Address = address;
         }

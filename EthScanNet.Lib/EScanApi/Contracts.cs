@@ -17,9 +17,9 @@ namespace EthScanNet.Lib.EScanApi
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public async Task<EScanABIResponse> GetABIAsync(EScanAddress address)
+        public async Task<EScanAbiResponse> GetAbiAsync(EScanAddress address)
         {
-            EScanGetContractABIRequest getAbi = new(address, this.Client);
+            EScanGetContractAbiRequest getAbi = new(address, this.Client);
             return await getAbi.SendAsync();
         }
 

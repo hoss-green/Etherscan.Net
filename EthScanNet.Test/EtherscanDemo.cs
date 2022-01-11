@@ -85,8 +85,8 @@ namespace EthScanNet.Test
         {
             Console.WriteLine("Contracts test started");
 
-            EScanAddress contractAddress = new EScanAddress("0xBff53e93ad7F17028fa75F1AB6F5fdB18AD06e8a");
-            EScanABIResponse abiResponse = await client.Contracts.GetABIAsync(contractAddress);
+            EScanAddress contractAddress = new EScanAddress("0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359");
+            EScanAbiResponse abiResponse = await client.Contracts.GetAbiAsync(contractAddress);
             Console.WriteLine("ABI: " + abiResponse.Message);
 
             EScanSourceCodeResponse sourceCodeResponse = await client.Contracts.GetSourceCodeAsync(contractAddress);
