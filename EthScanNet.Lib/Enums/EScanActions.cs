@@ -12,6 +12,8 @@ namespace EthScanNet.Lib.Enums
         public static readonly EScanActions TokenCirculatingSupply = new( "TokenCSupply");
         public static readonly EScanActions TokenBalance = new( "TokenBalance");
         public static readonly EScanActions TxErc20Token = new("TokenTx");
+        public static readonly EScanActions GetContractABI = new("GetABI");
+        public static readonly EScanActions GetContractSourceCode = new("GetSourceCode");
 
 
         public static readonly EScanActions GasEstimate = new("GasEstimate");
