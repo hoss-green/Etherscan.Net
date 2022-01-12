@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -72,6 +73,65 @@ namespace EthScanNet.Lib.Models.ApiRequests
                 
                 EScanGenericResponse genericResponse = JsonConvert.DeserializeObject<EScanGenericResponse>(resultContent);
                 if (genericResponse.Message.StartsWith("NotOk", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (genericResponse.ResultMessage.GetType() != typeof(JArray))
+                    {
+                        throw new("Error with API result: (" + genericResponse.ResultMessage + ")");
+                    }
+
+                    throw new("Error with API result: (Unknown)");
+                }
+
+                dynamic responseObject = JsonConvert.DeserializeObject(resultContent, this._responseType);
+                return responseObject;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        internal async Task<dynamic> SendAsync<T>(T payload)
+        {
+            HttpClient client = new HttpClient();
+            string requestUrl = EScanClient.BaseUrl;
+
+            if (EScanClient.ThrottleMs.HasValue)
+            {
+                await Task.Delay(EScanClient.ThrottleMs.Value);
+            }
+
+            string payloadJson = JsonConvert.SerializeObject(payload);
+            IDictionary<string, string> payloadDict = JsonConvert.DeserializeObject<IDictionary<string, string>>(payloadJson);
+            payloadDict.Add("apikey", EScanClient.ApiKeyToken);
+            payloadDict.Add("module", this.Module);
+            payloadDict.Add("action", this.Action);
+
+            HttpContent content = new FormUrlEncodedContent(payloadDict);
+
+            try
+            {
+                HttpResponseMessage result = await client.PostAsync(requestUrl, content);
+                if (!result.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException("Server issue (" + result.StatusCode + "): " + result.ReasonPhrase);
+                }
+
+                string resultContent = await result.Content.ReadAsStringAsync();
+
+                if (this._responseType.BaseType == typeof(EScanJsonRpcResponse))
+                {
+                    EScanGenericJsonResponse genericJsonResponse = JsonConvert.DeserializeObject<EScanGenericJsonResponse>(resultContent);
+                    if (genericJsonResponse.JsonRpc != null)
+                    {
+                        dynamic jsonResponseObject = JsonConvert.DeserializeObject(resultContent, this._responseType);
+                        return jsonResponseObject;
+                    }
+                }
+
+                EScanGenericResponse genericResponse = JsonConvert.DeserializeObject<EScanGenericResponse>(resultContent);
+                if (!genericResponse.IsOk)
                 {
                     if (genericResponse.ResultMessage.GetType() != typeof(JArray))
                     {

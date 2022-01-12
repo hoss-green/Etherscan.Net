@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using EthScanNet.Lib;
+using EthScanNet.Lib.Models.ApiRequests.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
 using EthScanNet.Lib.Models.ApiResponses.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Stats;
@@ -91,6 +92,47 @@ namespace EthScanNet.Test
 
             EScanSourceCodeResponse sourceCodeResponse = await client.Contracts.GetSourceCodeAsync(contractAddress);
             Console.WriteLine("Source Code: " + sourceCodeResponse.Message);
+
+            // Ropsten Network
+            string guid = "brv6gjya7rne8rvyniysycu8qcvb5nqn49akwx7wdxgx5udpgj";
+            EScanSourceCodeVerificationStatusResponse verificationStatusResponse = await client.Contracts.GetSourceCodeVerificationStatusAsync(guid);
+            Console.WriteLine("Verification status: " + verificationStatusResponse.Message);
+
+            var verificationPayload = new EScanContractCodeVerificationModel
+            {
+                ContractAddress = "0x29137a31592885EF4E6Ab2C1A7BB81d0D4311954",
+                SourceCode = @"
+                // SPDX-License-Identifier: MIT
+
+                pragma solidity >=0.7.0 <0.9.0;
+
+                contract Storage {
+
+                    uint256 number;
+
+                    constructor(uint defaultNum_) {
+                        number = defaultNum_;
+                    }
+
+                    function store(uint256 num) public {
+                        number = num;
+                    }
+
+                    function retrieve() public view returns (uint256){
+                        return number;
+                    }
+                }",
+                CodeFormat = "solidity-single-file",
+                ContractName = "Storage",
+                CompilerVersion = "v0.8.7+commit.e28d00a7",
+                OptimizationUsed = "1",
+                Runs = "200",
+                ContstructorArguments = "uint defaultNum_",
+                EvmVersion = "3",
+                LicenseType = "1"
+            };
+            EScanSourceCodeVerificationResponse verificationResponse = await client.Contracts.VerifySmartContractAsync(verificationPayload);
+            Console.WriteLine("Verification: " + verificationResponse.Guid);
 
             Console.WriteLine("Contracts test complete");
         }

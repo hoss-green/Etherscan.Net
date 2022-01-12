@@ -12,5 +12,8 @@ namespace EthScanNet.Lib.Models.EScan
         
         [JsonProperty("Result")]
         public object ResultMessage { get; set; }
+
+
+        public bool IsOk { get => Status == "1"; }
     }
 }

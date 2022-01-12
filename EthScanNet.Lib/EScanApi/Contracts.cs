@@ -1,4 +1,6 @@
-﻿using EthScanNet.Lib.Models.ApiRequests.Contracts;
+﻿using EthScanNet.Lib.Enums;
+using EthScanNet.Lib.Models.ApiRequests;
+using EthScanNet.Lib.Models.ApiRequests.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Contracts;
 using EthScanNet.Lib.Models.EScan;
 
@@ -33,5 +35,28 @@ namespace EthScanNet.Lib.EScanApi
             EScanGetContractSourceCodeRequest getSourceCode = new(address, this.Client);
             return await getSourceCode.SendAsync();
         }
+
+        /// <summary>
+        /// Check Source Code Verification Status.
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <returns></returns>
+        public async Task<EScanSourceCodeVerificationStatusResponse> GetSourceCodeVerificationStatusAsync(string guid)
+        {
+            EScanGetVerificationStatusRequest getStatus = new(guid, this.Client);
+            return await getStatus.SendAsync();
+        }
+
+        /// <summary>
+        /// Submit a contract source code to Etherscan for verification.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public async Task<EScanSourceCodeVerificationResponse> VerifySmartContractAsync(EScanContractCodeVerificationModel payload)
+        {
+            EScanRequest getSourceCode = new(this.Client, typeof(EScanSourceCodeVerificationResponse), EScanModules.Contract, EScanActions.VerifySourceCode);
+            return await getSourceCode.SendAsync(payload);
+        }
+
     }
 }

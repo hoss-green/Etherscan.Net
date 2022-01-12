@@ -14,11 +14,10 @@ namespace EthScanNet.Test
 
         private static async Task RunApiCommands()
         {
-            string apiKey = null;
+            string apiKey = "";
 
             //BscScanDemo demo = new(apiKey);
-            EtherscanDemo demo = new EtherscanDemo(apiKey, EScanNetwork.RopstenNet);
-
+            EtherscanDemo demo = new EtherscanDemo(apiKey, EScanNetwork.RinkebyNet);
 
 
             try
