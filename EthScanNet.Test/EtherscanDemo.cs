@@ -93,7 +93,7 @@ namespace EthScanNet.Test
             EScanSourceCodeResponse sourceCodeResponse = await client.Contracts.GetSourceCodeAsync(contractAddress);
             Console.WriteLine("Source Code: " + sourceCodeResponse.Message);
 
-            // Ropsten Network
+            // EScanNetwork.RinkebyNet
             string guid = "brv6gjya7rne8rvyniysycu8qcvb5nqn49akwx7wdxgx5udpgj";
             EScanSourceCodeVerificationStatusResponse verificationStatusResponse = await client.Contracts.GetSourceCodeVerificationStatusAsync(guid);
             Console.WriteLine("Verification status: " + verificationStatusResponse.Message);
