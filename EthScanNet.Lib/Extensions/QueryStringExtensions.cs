@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Web;
 
 namespace EthScanNet.Lib.Extensions
 {
@@ -27,6 +29,17 @@ namespace EthScanNet.Lib.Extensions
 
             stringBuilder.Remove(stringBuilder.Length - 1, 1);
             return stringBuilder.ToString();
+        }
+
+        public static string ToUrlEncodedString(this object item)
+        {
+            var properties = item
+                .GetType()
+                .GetProperties()
+                .Where(p => p.GetValue(item) != null)
+                .Select(p => $"{p.Name}={HttpUtility.UrlEncode(p.GetValue(item)?.ToString())}");
+
+            return string.Join("&", properties.ToArray());
         }
     }
 }

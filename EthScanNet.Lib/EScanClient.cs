@@ -17,7 +17,8 @@ namespace EthScanNet.Lib
         public Accounts Accounts { get; }
         public Tokens Tokens { get;  }
         public Stats Stats { get; }
-        
+        public Contracts Contracts { get; set; }
+
         public Proxy Proxy { get; }
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace EthScanNet.Lib
             this.Tokens = new(this);
             this.Stats = new(this);
             this.Proxy = new(this);
+            this.Contracts = new(this);
 
         }
         

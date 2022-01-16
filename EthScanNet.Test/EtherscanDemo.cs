@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using EthScanNet.Lib;
+using EthScanNet.Lib.Models.ApiRequests.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Accounts;
+using EthScanNet.Lib.Models.ApiResponses.Contracts;
 using EthScanNet.Lib.Models.ApiResponses.Stats;
 using EthScanNet.Lib.Models.ApiResponses.Tokens;
 using EthScanNet.Lib.Models.EScan;
@@ -11,22 +13,25 @@ namespace EthScanNet.Test
     public class EtherscanDemo
     {
         private readonly string _apiKey;
+        private readonly EScanNetwork _network;
 
-        public EtherscanDemo(string apiKey)
+        public EtherscanDemo(string apiKey, EScanNetwork network)
         {
             this._apiKey = apiKey ?? "YourApiKeyToken";
+            this._network = network ?? EScanNetwork.MainNet;
         }
 
         public async Task RunApiCommandsAsync()
         {
             Console.WriteLine("Running EtherscanDemo with APIKey: " + this._apiKey);
-            EScanClient client = new(EScanNetwork.MainNet, this._apiKey);
+            EScanClient client = new(this._network, this._apiKey);
 
             try
             {
                 await RunAccountCommandsAsync(client);
                 await RunTokenCommandsAsync(client);
                 await RunStatsCommandsAsync(client);
+                await RunContractCommandsAsync(client);
                 Console.WriteLine();
             }
             catch (Exception e)
@@ -75,6 +80,61 @@ namespace EthScanNet.Test
             EScanTotalCoinSupply totalSupply = await client.Stats.GetTotalSupply();
             Console.WriteLine("GetTotalSupply: " + totalSupply.Message);
             Console.WriteLine("Stats test complete");
+        }
+
+        private async Task RunContractCommandsAsync(EScanClient client)
+        {
+            Console.WriteLine("Contracts test started");
+
+            EScanAddress contractAddress = new EScanAddress("0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359");
+            EScanAbiResponse abiResponse = await client.Contracts.GetAbiAsync(contractAddress);
+            Console.WriteLine("ABI: " + abiResponse.Message);
+
+            EScanSourceCodeResponse sourceCodeResponse = await client.Contracts.GetSourceCodeAsync(contractAddress);
+            Console.WriteLine("Source Code: " + sourceCodeResponse.Message);
+
+            // EScanNetwork.RinkebyNet
+            string guid = "brv6gjya7rne8rvyniysycu8qcvb5nqn49akwx7wdxgx5udpgj";
+            EScanSourceCodeVerificationStatusResponse verificationStatusResponse = await client.Contracts.GetSourceCodeVerificationStatusAsync(guid);
+            Console.WriteLine("Verification status: " + verificationStatusResponse.Message);
+
+            var verificationPayload = new EScanContractCodeVerificationModel
+            {
+                ContractAddress = "0x29137a31592885EF4E6Ab2C1A7BB81d0D4311954",
+                SourceCode = @"
+                // SPDX-License-Identifier: MIT
+
+                pragma solidity >=0.7.0 <0.9.0;
+
+                contract Storage {
+
+                    uint256 number;
+
+                    constructor(uint defaultNum_) {
+                        number = defaultNum_;
+                    }
+
+                    function store(uint256 num) public {
+                        number = num;
+                    }
+
+                    function retrieve() public view returns (uint256){
+                        return number;
+                    }
+                }",
+                CodeFormat = "solidity-single-file",
+                ContractName = "Storage",
+                CompilerVersion = "v0.8.7+commit.e28d00a7",
+                OptimizationUsed = "1",
+                Runs = "200",
+                ContstructorArguments = "uint defaultNum_",
+                EvmVersion = "3",
+                LicenseType = "1"
+            };
+            EScanSourceCodeVerificationResponse verificationResponse = await client.Contracts.VerifySmartContractAsync(verificationPayload);
+            Console.WriteLine("Verification: " + verificationResponse.Guid);
+
+            Console.WriteLine("Contracts test complete");
         }
     }
 }

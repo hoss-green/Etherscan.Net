@@ -9,5 +9,7 @@ namespace EthScanNet.Lib.Models.ApiResponses
 
         [JsonProperty("message")]
         public string Message { get; set; }
+
+        public bool IsOk { get => Status == "1"; }
     }
 }
