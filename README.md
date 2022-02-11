@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O8AGNLW)
+
 # Etherscan.Net
 I originally wrapped this for use in another project, I figured that if I was doing this, I may as well open source it to the community and see if I can help out anyone working with .NET5/.NETCore. I needed something that supported all the Etherscan networks, not just the Ethereum chain. 
 
@@ -45,6 +47,8 @@ catch (Exception e)
 
 # Tip!
 Always happy to receive donations to help me support my work or buy pizza.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O8AGNLW)
 
 BSC: 0x44ed8E0c45b82d12cAF02f73294fa9AfED48eD80
 
