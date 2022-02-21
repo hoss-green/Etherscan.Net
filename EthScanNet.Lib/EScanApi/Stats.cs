@@ -28,7 +28,13 @@ namespace EthScanNet.Lib.EScanApi
                 EScanGetTotalBscCoinSupply getTotalBscCoinSupply = new(this.Client);
                 return await getTotalBscCoinSupply.SendAsync();
             }
-                
+
+            if (this.Client.Network.IsPolygon)
+            {
+                EScanGetTotalPolygonCoinSupply getTotalPolygonCoinSupply = new(this.Client);
+                return await getTotalPolygonCoinSupply.SendAsync();
+            }
+
             EScanGetTotalEthCoinSupply getTotalEthCoinSupply = new(this.Client);
             return await getTotalEthCoinSupply.SendAsync();
         }     

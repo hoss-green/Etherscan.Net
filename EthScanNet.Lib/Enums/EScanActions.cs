@@ -29,7 +29,12 @@ namespace EthScanNet.Lib.Enums
         {
             public static readonly EScanActions BnbSupply = new( "BnbSupply");
         }
-        
+
+        public static class PolygonScanSpecific
+        {
+            public static readonly EScanActions MaticSupply = new("MaticSupply");
+        }
+
         public static class EtherscanSpecific
         {
             public static readonly EScanActions EthSupply = new( "EthSupply");
