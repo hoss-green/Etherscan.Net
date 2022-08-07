@@ -16,6 +16,7 @@ namespace EthScanNet.Test
         {
             string apiKey = "";
 
+            EScanNetwork eScanNetwork = new("https://api-rinkeby.etherscan.io/api");
             //BscScanDemo demo = new(apiKey);
             EtherscanDemo demo = new EtherscanDemo(apiKey, EScanNetwork.RinkebyNet);
 

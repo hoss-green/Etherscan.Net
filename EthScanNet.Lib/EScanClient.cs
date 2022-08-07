@@ -40,7 +40,5 @@ namespace EthScanNet.Lib
             this.Contracts = new(this);
 
         }
-        
-        
     }
 }

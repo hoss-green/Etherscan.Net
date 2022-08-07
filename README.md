@@ -11,6 +11,7 @@ For people who learn by example, there is a demo project called EthScanNet.Test 
 For people who prefer guides:
 
 ## Usage
+### Network Creation
 Firstly choose the Etherscan network you'd like to join
 ```C#
 public static readonly EScanNetwork EScanMainNet = new("https://api.etherscan.io/api");
@@ -21,6 +22,14 @@ public static readonly EScanNetwork GoerliNet = new("https://api-goerli.ethersca
 public static readonly EScanNetwork BscTestNet = new("https://api-testnet.bscscan.com/api");
 public static readonly EScanNetwork BscMainNet = new("https://api.bscscan.com/api");
 ```
+
+*or*, create a network, the "isBsc" flag needs to be set as the APIs are slightly different between networks.
+```C#
+ EScanNetwork eScanNetwork = new("https://api.etherscan.io/api", false /* defaults to false */);
+```
+
+---
+### API Client Instantiation
 
 Instantiate a new EScanClient with the relevant network you wish to connect to (from Etherscan).
 ``` C#
